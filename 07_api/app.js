@@ -1,5 +1,6 @@
 const https = require('follow-redirects').https
 const request = require('request')
+const awaitRequest = require('async-request')
 
 function ex_01() {
     const options = {
@@ -47,4 +48,37 @@ function ex_02() {
         console.log(data)
     })
 }
-ex_02()
+// ex_02()
+
+async function ex_03() {
+    let data = await awaitRequest(
+        'https://jsonplaceholder.typicode.com/todos/1',
+        {
+            method: 'GET',
+            // headers: {
+            //     apikey: 'C52A7D86316ccA8B',
+            // },
+        }
+    )
+    data = JSON.parse(data.body)
+    console.log(data)
+}
+// ex_03()
+
+async function ex_04() {
+    let data = awaitRequest('https://jsonplaceholder.typicode.com/posts', {
+        method: 'POST',
+        data: JSON.stringify({
+            title: 'foo',
+            body: 'bar',
+            userId: 1,
+        }),
+        headers: {
+            'Content-type': 'application/json; charset=UTF-8',
+        },
+    })
+    // data = JSON.parse(body)
+    console.log(data.body)
+}
+
+ex_04()
