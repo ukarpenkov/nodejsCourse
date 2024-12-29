@@ -1,14 +1,14 @@
 const Sequelize = require('sequelize')
+const db = require('./db')
+const Mma = db.rating
 
-module.exports = function (sequelize) {
-    return sequelize.define("Mma",
-        
-    
-    )
+function t01() {
+    Mma.findAll().then((res) => {
+        // console.log(res)
+        res.forEach((item) => {
+            console.log(item.name)
+        })
+    })
 }
 
-
-// ['require', 'dependency'],
-// function (require, factory) {
-//     'use strict'
-// }
+t01()
