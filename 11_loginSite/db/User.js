@@ -10,15 +10,18 @@ module.exports = function (sequilize) {
             type: Sequilize.STRING(100),
         },
         password: {
-            type: Sequilize.STRING(44),
+            type: Sequilize.STRING(100),
         },
         created_at: {
-            type: Sequilize.INTEGER,
+            type: Sequilize.INTEGER(100),
             defaultValues: Math.floor(Date.now() / 100),
         },
         updated_at: {
-            type: Sequilize.INTEGER,
+            type: Sequilize.INTEGER(100),
             defaultValues: Math.floor(Date.now() / 100),
-        },
+        }
+    }, {
+       timestamp: false,
+       tableName: 'user'     
     })
 }
